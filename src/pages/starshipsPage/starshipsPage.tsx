@@ -19,7 +19,7 @@ const StarshipsPage: React.FC<{}> = () => {
       title: string;
     }[]
   >([]);
-  const [names] = useState<string>('startships');
+  const [names] = useState<string>('starships');
   // state for the filter state
   const [query, setQuery] = useState<string>('asc');
   // state for the page indicator
