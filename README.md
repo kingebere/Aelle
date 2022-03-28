@@ -1,4 +1,4 @@
-# TeamAPT Assessment
+# Aella Assessment
 
 This is a job interview for Aella .
 
