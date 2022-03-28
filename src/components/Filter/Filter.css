@@ -1,0 +1,27 @@
+.sort-label {
+  color: var(--original-white);
+  font-size: 1.5rem;
+}
+
+select {
+  display: block;
+  width: 11rem;
+  cursor: pointer;
+  height: 40px;
+  padding: 0.375rem 2.25rem 0.375rem 1.4rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--original-black);
+  background-color: var(--original-white);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border-radius: 2px;
+  appearance: none;
+}
+.Select__container {
+  position: relative;
+}

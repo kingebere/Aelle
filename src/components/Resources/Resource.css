@@ -1,0 +1,25 @@
+.Resource {
+  display: flex;
+  padding: 7px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-direction: row;
+  gap: 89px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #a56d07, #e9a321);
+}
+
+.Resources__text {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--original-white);
+}
+
+.heart-icons {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  cursor: pointer;
+}

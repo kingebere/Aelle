@@ -1,38 +1,118 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  font-size: 62.5%;
+
+  min-height: 100%;
+  padding: 0;
+  scroll-behavior: smooth;
+  line-height: 1.6;
+  position: relative;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
+  box-sizing: border-box;
+
+  font-family: var(--general-font);
+}
+p {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+h3 {
+  margin: 0;
+  display: inline-block;
+}
+.img {
+  max-width: 100%;
+}
 .App {
-  text-align: center;
+  overflow: hidden;
+  background-color: var(--original-black);
+}
+a {
+  text-decoration: none;
+}
+h2 {
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  border-style: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button,
+select {
+  text-transform: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button,
+select {
+  margin: 0;
+  font-family: inherit;
+  line-height: inherit;
+  border: none;
+  margin: 0;
+  background: none;
+}
+ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  cursor: pointer;
+}
+:root {
+  /* Colors */
+  --original-black: #000000;
+  --dim-black: #080808;
+  --original-white: #ffffff;
+  --dark-grey: #737a91;
+  --background-dark: #c9bcbc;
+  --background-cream-two: #e3e3ed;
+  --small-background: #543804;
+  --dark-red: #cd0000;
+  --dark-blue-icon: #0f133c;
+  --light-grey: #d4d4d4;
+  --dark-blue-text: #303951;
+  --dark-blue-dates: #6f7687;
+  --dark-blue-number: #cccccc;
+
+  /*Font*/
+  --general-font: "GT Walsheim";
+
+  --default-size: 1.6rem;
 }
 
-.App-link {
-  color: #61dafb;
+@font-face {
+  font-family: "GT Walsheim";
+  src: url("./assets/fonts/gt-walsheim-web.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: "GT Walsheim";
+  src: url("./assets/fonts/gt-walsheim-medium-web.ttf") format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GT Walsheim";
+  src: url("./assets/fonts/gt-walsheim-bold-web.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GT Walsheim";
+  src: url("./assets/fonts/gt-walsheim-light-web.ttf") format("truetype");
+  font-weight: lighter;
+  font-style: normal;
 }

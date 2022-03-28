@@ -1,0 +1,38 @@
+.home {
+  background-color: var(--dim-black);
+  display: flex;
+  gap: 12px;
+  padding: 44px;
+  align-items: center;
+
+  flex-direction: column;
+  text-align: center;
+  border-radius: 12px;
+  height: 140vh;
+}
+.home__text {
+  text-align: center;
+
+  background-image: linear-gradient(
+    236deg,
+    hsl(239deg, 100%, 50%),
+    hsl(3deg 91% 43%)
+  );
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: 2.4rem;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.home__text:hover {
+  background-image: linear-gradient(
+    236deg,
+    hsl(3deg 91% 43%),
+    hsl(239deg, 100%, 50%)
+  );
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}

@@ -1,0 +1,29 @@
+.page__text__wrapper {
+  display: flex;
+  padding: 7px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  text-align: start;
+  flex-direction: row;
+  gap: 89px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #a56d07, #e9a321);
+}
+
+.page__text {
+  font-size: 2rem;
+  color: var(--original-white);
+}
+.page__circle {
+  padding: 12px;
+  background: var(--small-background);
+  border-radius: 50%;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  color: white;
+  font-size: 1rem;
+}
