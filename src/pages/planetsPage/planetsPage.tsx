@@ -43,6 +43,7 @@ function PlanetsPage() {
     // eslint-disable-next-line no-unsafe-optional-chaining
     setCount(Math.ceil(data?.data.count / 10));
   }, [data?.data.count]);
+
   // This algorithm steemed out the lack of the id value in the array .Thus , making it
   // diffcult to route properly. I decided to extract the id
   // from the url value, which contains a suitable option to use as id

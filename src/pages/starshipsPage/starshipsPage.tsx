@@ -107,14 +107,11 @@ function StarshipsPage() {
           [...Datar].sort((a, b) => b.created.localeCompare(a.created))
         );
       }
-      if (query === "desc") {
-        return setDatar(
-          [...Datar].sort((a, b) => a.created.localeCompare(b.created))
-        );
-      }
-    } else {
-      return null;
+      return setDatar(
+        [...Datar].sort((a, b) => a.created.localeCompare(b.created))
+      );
     }
+    return null;
   };
   // conditional loading
   if (isLoading) {

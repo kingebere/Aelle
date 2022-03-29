@@ -26,11 +26,11 @@ function Home() {
     return <Spinner />;
   }
 
-  // This function stores the names in an array both local storages
+  // This function stores the names in the array in local storage
   const click = (name: string) => {
     setTagged((prev) => [...prev, name]);
   };
-  // This function removes the names in an array both local storages
+  // This function removes the names in the array in local storage
 
   const remove = (name: string) => {
     setTagged(tagged.filter((x) => x !== name));

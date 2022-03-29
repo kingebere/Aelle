@@ -14,20 +14,26 @@ function Films() {
     axios.get(`https://swapi.dev/api/films/${id}`)
   );
   useEffect(() => {
+    // eslint-disable-next-line consistent-return
     data?.data.characters.forEach((cde: string) => {
       if (
         typeof Number(cde.charAt(29)) === "number" &&
         Number.isNaN(Number(cde.charAt(30)))
       ) {
-        setData((prev) => [...prev, Number(cde.charAt(29))]);
-      } else if (
+        return setData((prev) => [...prev, Number(`${cde.charAt(29)}`)]);
+      }
+      if (
         typeof Number(cde.charAt(29)) === "number" &&
         typeof Number(cde.charAt(30)) === "number"
       ) {
-        setData((prev) => [...prev, Number(cde.charAt(29) + cde.charAt(30))]);
+        return setData((prev) => [
+          ...prev,
+          Number(cde.charAt(29) + cde.charAt(30)),
+        ]);
       }
     });
   }, [data?.data.characters]);
+
   if (isLoading) {
     return <Spinner />;
   }
