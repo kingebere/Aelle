@@ -101,12 +101,12 @@ function SpeciesPage() {
     if (Datar) {
       if (query === "asc") {
         setDatar([...Datar].sort((a, b) => b.created.localeCompare(a.created)));
+      } else if (query === "desc") {
+        setDatar([...Datar].sort((a, b) => a.created.localeCompare(b.created)));
       }
-      return setDatar(
-        [...Datar].sort((a, b) => a.created.localeCompare(b.created))
-      );
+    } else {
+      return null;
     }
-    return null;
   };
   // conditional loading
   if (isLoading) {
