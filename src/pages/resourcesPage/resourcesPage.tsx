@@ -139,7 +139,7 @@ function ResourcesPage() {
     setPage((oldPage) => {
       const prevPages = oldPage - 1;
       if (prevPages < 1 || prevPages === 1) {
-        return 0;
+        return 1;
       }
       return prevPages;
     });
