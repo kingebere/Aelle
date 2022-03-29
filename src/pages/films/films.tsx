@@ -11,7 +11,7 @@ import "../page.css";
 function Films() {
   const [Data, setData] = useState<number[]>([]);
   const { id } = useParams();
-  const { isLoading, data } = useQuery("films", () =>
+  const { isLoading, data } = useQuery(`${id}`, () =>
     axios.get(`https://swapi.dev/api/films/${id}`)
   );
   useEffect(() => {
@@ -62,13 +62,17 @@ function Films() {
         <div className="section section__boxContainer">
           <h1 className="section__box__text">People:</h1>
           <div className="section__box-1">
-            {Data.map((v: number) => (
-              <div className="section__box" key={v}>
-                <h1>
-                  <Link to={`/people/${v}`}>{v}</Link>
-                </h1>
-              </div>
-            ))}
+            {Data.length !== 0 || Data === undefined ? (
+              Data.map((v: number) => (
+                <div className="section__box" key={v}>
+                  <h1>
+                    <Link to={`/people/${v}`}>{v}</Link>
+                  </h1>
+                </div>
+              ))
+            ) : (
+              <h1 className="section__box__text">Such Empty!</h1>
+            )}
           </div>
         </div>
       </div>

@@ -56,13 +56,17 @@ function Starships() {
         <div className="section section__boxContainer">
           <h1 className="section__box__text">Films:</h1>
           <div className="section__box-1">
-            {Data.map((v: number) => (
-              <div className="section__box" key={v}>
-                <h1>
-                  <Link to={`/films/${v}`}>{v}</Link>
-                </h1>
-              </div>
-            ))}
+            {Data.length !== 0 || Data === undefined ? (
+              Data.map((v: number) => (
+                <div className="section__box" key={v}>
+                  <h1>
+                    <Link to={`/films/${v}`}>{v}</Link>
+                  </h1>
+                </div>
+              ))
+            ) : (
+              <h1 className="section__box__text">Such Empty!</h1>
+            )}
           </div>
         </div>
       </div>
