@@ -4,7 +4,6 @@ import { Fifth } from "../../types/types";
 
 const Paginationindicator = function Paginationindicator({
   paginate,
-
   count,
 }: Fifth): JSX.Element {
   return (

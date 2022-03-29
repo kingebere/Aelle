@@ -37,7 +37,6 @@ function Films() {
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <div className="section__wrapper">
       <div className="section__container">

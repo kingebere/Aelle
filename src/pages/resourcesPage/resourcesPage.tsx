@@ -46,7 +46,7 @@ function ResourcesPage() {
   // Setting the count state
   useEffect(() => {
     // eslint-disable-next-line no-unsafe-optional-chaining
-    setCount(Math.ceil(data?.data.count / 10));
+    setCount(Math.ceil(data?.data.count / 10) || 1);
   }, [data?.data.count]);
 
   // This algorithm steemed out the
@@ -56,6 +56,7 @@ function ResourcesPage() {
   // a suitable option to use as id
   // This algorithm identifies the number and
   // attaches it into a newly created id .Thus making routing easy:)
+  // Ternary operator spaghetti coming up. Heads up ;)
   useEffect(() => {
     setDatar(data?.data.results);
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -118,16 +119,16 @@ function ResourcesPage() {
   // the state of the filter
   const nextPage = () => {
     setPage((oldPage) => {
-      let nextPages = oldPage + 1;
+      const nextPages = oldPage + 1;
       if (nextPages > count || nextPages === count) {
-        nextPages = count;
+        return count;
       }
       return nextPages;
     });
     setPaginate(paginate + 1);
     setQuery("asc");
   };
-  // function for decrementing to the next page ,
+  // function for decrementing to the prev page ,
   // it also decrements the page indicator .It also
   // sets the state of the filter
 
@@ -135,7 +136,7 @@ function ResourcesPage() {
     setPage((oldPage) => {
       const prevPages = oldPage - 1;
       if (prevPages < 1 || prevPages === 1) {
-        return 1;
+        return 0;
       }
       return prevPages;
     });
