@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -27,7 +28,7 @@ function Planets() {
         setData((prev) => [...prev, Number(cde.charAt(29) + cde.charAt(30))]);
       }
     });
-  }, [data?.data.residents]);
+  }, []);
 
   if (isLoading) {
     return <Spinner />;

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -32,11 +33,12 @@ function Films() {
         ]);
       }
     });
-  }, [data?.data.characters]);
+  }, []);
 
   if (isLoading) {
     return <Spinner />;
   }
+
   return (
     <div className="section__wrapper">
       <div className="section__container">
