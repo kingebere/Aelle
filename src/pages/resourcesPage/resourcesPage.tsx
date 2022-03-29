@@ -166,7 +166,7 @@ function ResourcesPage() {
   return (
     <div className="page">
       <div className="page__1">
-        <h1 className="page__1__text">{name}</h1>
+        <h1 className="page__1--text">{name}</h1>
         <div>
           <Filter query={query} sortDate={sortDate} />
         </div>

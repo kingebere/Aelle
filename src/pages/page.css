@@ -22,7 +22,7 @@
   text-align: end;
 }
 
-.page__1__text {
+.page__1--text {
   font-size: 2rem;
   color: var(--original-white);
 }
@@ -103,7 +103,6 @@
   text-align: center;
 }
 
-
 .page__1 {
   background-color: var(--dim-black);
   display: flex;
@@ -128,4 +127,3 @@
   gap: 20px;
   color: var(--original-white);
 }
-
