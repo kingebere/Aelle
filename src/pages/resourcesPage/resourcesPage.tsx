@@ -45,6 +45,7 @@ function ResourcesPage() {
 
   // Setting the count state
   useEffect(() => {
+    // since this can be undefined, I used 1 as a fallback
     // eslint-disable-next-line no-unsafe-optional-chaining
     setCount(Math.ceil(data?.data.count / 10) || 1);
   }, [data?.data.count]);
@@ -56,6 +57,8 @@ function ResourcesPage() {
   // a suitable option to use as id
   // This algorithm identifies the number and
   // attaches it into a newly created id .Thus making routing easy:)
+  // since urls have different lengths , I decided to create a spaghetti of
+  // ternary operators that targets the positions of the numbers in them
   // Ternary operator spaghetti coming up. Heads up ;)
   useEffect(() => {
     setDatar(data?.data.results);
