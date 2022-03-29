@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useQuery } from 'react-query';
-import Filter from '../../components/Filter/Filter';
-import Spinner from '../../components/spinner/spinner';
-import Card from '../../components/Card/Card';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useQuery } from "react-query";
+import Filter from "../../components/Filter/Filter";
+import Spinner from "../../components/spinner/spinner";
+import Card from "../../components/Card/Card";
+import Nextbutton from "../../components/Nextbutton/Nextbutton";
+import Prevbutton from "../../components/Prevbutton/Prevbutton";
+import Paginationindicator from "../../components/Paginationindicator/Paginationindicator";
 
-import '../page.css';
+import "../page.css";
 
-const StarshipsPage: React.FC<{}> = () => {
-  const [page, setPage] = useState(1);
-
-  const [datar, setDatar] = useState<
+function StarshipsPage() {
+  const [page, setPage] = useState<number>(1);
+  const [Datar, setDatar] = useState<
     {
       url: string;
       created: string;
@@ -19,82 +21,96 @@ const StarshipsPage: React.FC<{}> = () => {
       title: string;
     }[]
   >([]);
-  const [names] = useState<string>('starships');
+  const [names] = useState<string>("starships");
   // state for the filter state
-  const [query, setQuery] = useState<string>('asc');
+  const [query, setQuery] = useState<string>("asc");
   // state for the page indicator
   const [paginate, setPaginate] = useState<number>(1);
 
-  const fetchData = (page: number) => {
-    return axios.get(`https://swapi.dev/api/starships/?page=${page}`);
-  };
+  const fetchData = (pages: number) =>
+    axios.get(`https://swapi.dev/api/starships/?page=${pages}`);
   const { isLoading, data, isFetching } = useQuery(
-    ['starships', page, paginate],
+    ["starships", page],
     () => fetchData(page),
     {
       keepPreviousData: true,
     }
   );
-
-  // This algorithm steemed out the lack of the id value in the array .Thus , making it
-  // diffcult to route properly. I decided to extract the id from the url value, which contains a suitable option to use as id
-  // This algorithm identifies the number and attaches it into a newly created id .Thus making routing easy:)
+  const [count, setCount] = useState<number>(0);
+  useEffect(() => {
+    // eslint-disable-next-line no-unsafe-optional-chaining
+    setCount(Math.ceil(data?.data.count / 10));
+  }, [data?.data.count]);
+  // This algorithm steemed out the
+  // lack of the id value in the array .Thus , making it
+  // diffcult to route properly. I decided to extract
+  // the id from the url value, which contains a suitable option to use as id
+  // This algorithm identifies the number and attaches it into a newly created
+  // id .Thus making routing easy:)
 
   useEffect(() => {
     setDatar(data?.data.results);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     data?.data.results &&
-      setDatar((prev) => {
-        return (
+      setDatar(
+        (prev) =>
           prev &&
-          Object.values(prev).map((item, i, data) =>
-            typeof Number(item.url[32]) === 'number' &&
-            isNaN(Number(item.url[33]))
+          Object.values(prev).map((item) =>
+            typeof Number(item.url[32]) === "number" &&
+            Number.isNaN(Number(item.url[33]))
               ? { ...item, id: Number(`${item.url[32]}`) }
               : { ...item, id: Number(item.url[32] + item.url[33]) }
           )
-        );
-      });
+      );
   }, [data?.data.results]);
 
-  // function for incrementing to the next page ,it also increments the page indicator .It also sets the state of the filter
+  // function for incrementing to the next page ,it also
+  // increments the page indicator .It also sets the
+  // state of the filter
 
   const nextPage = () => {
     setPage((oldPage) => {
-      let nextPage = oldPage + 1;
-      if (
-        nextPage > Math.ceil(data?.data.count / 10) ||
-        nextPage === Math.ceil(data?.data.count / 10)
-      ) {
-        nextPage = Math.ceil(data?.data.count / 10);
+      let nextPages = oldPage + 1;
+      if (nextPages > count || nextPages === count) {
+        nextPages = count;
       }
-      return nextPage;
+      return nextPages;
     });
     setPaginate(paginate + 1);
-    setQuery('asc');
+    setQuery("asc");
   };
-  // function for decrementing to the prev page ,it also decrements the page indicator .It also sets the state of the filter
+  // function for decrementing to the prev page ,
+  // it also decrements the page indicator .It also sets
+  // the state of the filter
 
   const prevPage = () => {
     setPage((oldPage) => {
-      let prevPage = oldPage - 1;
-      if (prevPage < 1 || prevPage === 1) {
-        prevPage = 1;
+      let prevPages = oldPage - 1;
+      if (prevPages < 1 || prevPages === 1) {
+        prevPages = 1;
       }
-      return prevPage;
+
+      return prevPages;
     });
     setPaginate(paginate - 1);
-    setQuery('asc');
+    setQuery("asc");
   };
 
   // function for the filter by data created functionality
 
+  // eslint-disable-next-line consistent-return
   const sortDate = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setQuery(e.target.value);
-    if (datar) {
-      if (query === 'asc') {
-        setDatar([...datar].sort((a, b) => b.created.localeCompare(a.created)));
-      } else if (query === 'desc') {
-        setDatar([...datar].sort((a, b) => a.created.localeCompare(b.created)));
+    if (Datar) {
+      if (query === "asc") {
+        return setDatar(
+          [...Datar].sort((a, b) => b.created.localeCompare(a.created))
+        );
+      }
+      if (query === "desc") {
+        return setDatar(
+          [...Datar].sort((a, b) => a.created.localeCompare(b.created))
+        );
       }
     } else {
       return null;
@@ -106,46 +122,26 @@ const StarshipsPage: React.FC<{}> = () => {
   }
 
   return (
-    <div className='page'>
-      <div className='page__1'>
-        <h1 className='page__1__text'>Starships</h1>
+    <div className="page">
+      <div className="page__1">
+        <h1 className="page__1__text">Starships</h1>
         <div>
           <Filter query={query} sortDate={sortDate} />
         </div>
-        <div className='page__container'>
-          {datar &&
-            datar.map((result) => {
-              return <Card result={result} names={names} />;
-            })}
+        <div className="page__container">
+          {Datar &&
+            Datar.map((result) => <Card result={result} names={names} />)}
         </div>
-        <div className='page__clicks'>
-          <button
-            className='buttons button-prev'
-            onClick={prevPage}
-            disabled={page === 1}
-          >
-            prev
-          </button>{' '}
-          <div className='page__counter'>
-            <h2 className='page__counter--1'>{paginate}</h2>
-            <div>/</div>{' '}
-            <h1 className='page__counter--2'>
-              {Math.ceil(data?.data.count / 10)}
-            </h1>
-          </div>
-          <button
-            className='buttons button-next'
-            onClick={nextPage}
-            disabled={page === Math.ceil(data?.data.count / 10)}
-          >
-            next
-          </button>
+        <div className="page__clicks">
+          <Prevbutton prevPage={prevPage} page={page} />
+          <Paginationindicator paginate={paginate} count={count} />
+          <Nextbutton count={count} page={page} nextPage={nextPage} />
           {/* conditional loading for the page changes */}
-          <div className='page__fetch'>{isFetching && 'loading...'}</div>
+          <div className="page__fetch">{isFetching && "loading..."}</div>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default StarshipsPage;

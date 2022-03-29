@@ -1,13 +1,16 @@
 import React from "react";
-
-import {Link} from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import "./Resource.css";
 import filled from "../../assets/images/heart-filled.png";
 import empty from "../../assets/images/heart-empty.png";
-import {First} from "../../types/types";
+import { First } from "../../types/types";
 
-const Resource: React.FC<First> = ({name, click, remove, tagged}) => {
+const Resource = function Resource({
+  click,
+  name,
+  remove,
+  tagged,
+}: First): JSX.Element {
   return (
     <div className="Resource">
       <div>
@@ -18,15 +21,23 @@ const Resource: React.FC<First> = ({name, click, remove, tagged}) => {
         </Link>
       </div>
 
-      {/* it the name is in second localstorage , we display the filled heart , else the empty heart */}
+      {/* if the name is in localstorage , we display the filled heart , else the empty heart */}
       {!tagged.includes(name) ? (
-        <div className="heart-icons" onClick={() => click(name)}>
+        <button
+          className="heart-icons"
+          onClick={() => click(name)}
+          type="submit"
+        >
           <img src={empty} alt="empty heart icon" />
-        </div>
+        </button>
       ) : (
-        <div className="heart-icons" onClick={() => remove(name)}>
+        <button
+          className="heart-icons"
+          onClick={() => remove(name)}
+          type="submit"
+        >
           <img src={filled} alt="filled heart icon" />
-        </div>
+        </button>
       )}
     </div>
   );

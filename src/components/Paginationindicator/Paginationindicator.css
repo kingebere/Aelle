@@ -1,0 +1,6 @@
+.page__counter {
+  display: flex;
+  gap: 8px;
+  color: var(--original-white);
+  font-size: 2rem;
+}

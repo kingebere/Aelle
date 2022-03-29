@@ -102,12 +102,7 @@
   flex-direction: column;
   text-align: center;
 }
-.page__counter {
-  display: flex;
-  gap: 8px;
-  color: var(--original-white);
-  font-size: 2rem;
-}
+
 
 .page__1 {
   background-color: var(--dim-black);
@@ -133,18 +128,4 @@
   gap: 20px;
   color: var(--original-white);
 }
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1.5rem;
-  background-color: #e9a321;
-  cursor: pointer;
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  color: var(--original-white);
-  font-size: var(--default-size);
-  font-weight: 400;
-}
+

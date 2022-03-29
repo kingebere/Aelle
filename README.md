@@ -38,4 +38,4 @@ for test , run npm test , please press a to run all test if you encounter an iss
   -Add a back button using useLocation and attach it to the pages (using Absolute positioning,top: 0 , right:20px ) . Use an icon in a circle background(border-radius:50%,height:24px;width:24px)
   -Understand react query better . Is it better than redux?.Hmmm
   -Glowing blue and red css effect (css box-shadow) to signify Star wars sabers. Use as absolute positioning,z-index:1.
-  -All of a sudden , eslint decided not to work with the application again . (To be fixed)
+  -All of a sudden , eslint decided not to work with the application again . (To be fixed) .. UPDATE(Fixed!!!)
