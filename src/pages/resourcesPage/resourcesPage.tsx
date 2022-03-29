@@ -34,14 +34,16 @@ function ResourcesPage() {
   const fetchData = (pages: number, input: string | undefined) =>
     axios.get(`https://swapi.dev/api/${input}/?page=${pages}`);
   const { isLoading, data, isFetching } = useQuery(
-    ["filmspage", page],
+    [`${name}`, page],
     () => fetchData(page, name),
     {
       keepPreviousData: true,
     }
   );
-
+  // state for the total number of items in the array
   const [count, setCount] = useState<number>(0);
+
+  // Setting the count state
   useEffect(() => {
     // eslint-disable-next-line no-unsafe-optional-chaining
     setCount(Math.ceil(data?.data.count / 10));
