@@ -66,7 +66,11 @@ function Vehicles() {
                 </div>
               ))
             ) : (
-              <h1 className="section__box__text">Such Empty!</h1>
+              <Link to="/">
+                <h1 className="section__box__text">
+                  Such Empty!, Click to go back home
+                </h1>
+              </Link>
             )}
           </div>
         </div>
