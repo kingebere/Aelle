@@ -183,7 +183,7 @@ function ResourcesPage() {
           <Paginationindicator paginate={paginate} count={count} />
           <Nextbutton count={count} page={page} nextPage={nextPage} />
           {/* conditional loading for the page changes */}
-          <div>{isFetching && "loading..."}</div>
+          <div className="page__fetch">{isFetching && "loading..."}</div>
         </div>
       </div>
     </div>
