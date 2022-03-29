@@ -15,8 +15,12 @@
   font-size: 2rem;
   color: var(--original-white);
 }
+.page__text:hover {
+  color: var(--dark-grey);
+}
 .page__circle {
   padding: 12px;
+  cursor: pointer;
   background: var(--small-background);
   border-radius: 50%;
   height: 32px;
@@ -26,4 +30,9 @@
   width: 32px;
   color: white;
   font-size: 1rem;
+  transition: 1s;
+}
+
+.page__circle:hover {
+  transform: scale(1.2);
 }

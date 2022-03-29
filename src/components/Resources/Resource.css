@@ -16,10 +16,17 @@
   font-weight: 400;
   color: var(--original-white);
 }
+.Resources__text:hover {
+  color: var(--dark-grey);
+}
 
 .heart-icons {
   width: 25px;
   height: 25px;
   margin-right: 5px;
   cursor: pointer;
+  transition: 1s;
+}
+.heart-icons:hover {
+  transform: scale(1.2);
 }

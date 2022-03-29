@@ -32,5 +32,5 @@ export type Second = {
     name: string;
     title: string;
   };
-  names: string;
+  names: string | undefined;
 };

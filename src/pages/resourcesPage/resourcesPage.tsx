@@ -1,6 +1,8 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable no-nested-ternary */
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import Filter from "../../components/Filter/Filter";
 import Spinner from "../../components/spinner/spinner";
@@ -10,8 +12,9 @@ import Nextbutton from "../../components/Nextbutton/Nextbutton";
 import Prevbutton from "../../components/Prevbutton/Prevbutton";
 import Paginationindicator from "../../components/Paginationindicator/Paginationindicator";
 
-function FilmsPage() {
+function ResourcesPage() {
   const [page, setPage] = useState<number>(1);
+  const { name } = useParams();
 
   const [Datar, setDatar] = useState<
     {
@@ -22,21 +25,22 @@ function FilmsPage() {
       title: string;
     }[]
   >([]);
-  const [names] = useState<string>("films");
+
   // state for the filter state
   const [query, setQuery] = useState<string>("asc");
   // state for the page indicator
   const [paginate, setPaginate] = useState<number>(1);
 
-  const fetchData = (pages: number) =>
-    axios.get(`https://swapi.dev/api/films/?page=${pages}`);
+  const fetchData = (pages: number, input: string | undefined) =>
+    axios.get(`https://swapi.dev/api/${input}/?page=${pages}`);
   const { isLoading, data, isFetching } = useQuery(
     ["filmspage", page],
-    () => fetchData(page),
+    () => fetchData(page, name),
     {
       keepPreviousData: true,
     }
   );
+
   const [count, setCount] = useState<number>(0);
   useEffect(() => {
     // eslint-disable-next-line no-unsafe-optional-chaining
@@ -58,13 +62,54 @@ function FilmsPage() {
         (prev) =>
           prev &&
           Object.values(prev).map((item) =>
-            typeof Number(item.url[28]) === "number" &&
-            Number.isNaN(Number(item.url[29]))
+            typeof Number(item.url[29]) === "number" &&
+            Number.isNaN(Number(item.url[30])) &&
+            name === "people"
+              ? { ...item, id: Number(`${item.url[29]}`) }
+              : typeof Number(item.url[29]) === "number" &&
+                typeof Number(item.url[30]) === "number" &&
+                name === "people"
+              ? { ...item, id: Number(item.url[29] + item.url[30]) }
+              : typeof Number(item.url[30]) === "number" &&
+                Number.isNaN(Number(item.url[31])) &&
+                name === "planets"
+              ? { ...item, id: Number(`${item.url[30]}`) }
+              : typeof Number(item.url[30]) === "number" &&
+                typeof Number(item.url[31]) === "number" &&
+                name === "planets"
+              ? { ...item, id: Number(item.url[30] + item.url[31]) }
+              : typeof Number(item.url[28]) === "number" &&
+                Number.isNaN(Number(item.url[29])) &&
+                name === "films"
               ? { ...item, id: Number(`${item.url[28]}`) }
-              : { ...item, id: Number(item.url[28] + item.url[29]) }
+              : typeof Number(item.url[28]) === "number" &&
+                typeof Number(item.url[29]) === "number" &&
+                name === "films"
+              ? { ...item, id: Number(item.url[28] + item.url[29]) }
+              : typeof Number(item.url[31]) === "number" &&
+                Number.isNaN(Number(item.url[32])) &&
+                name === "vehicles"
+              ? { ...item, id: Number(`${item.url[31]}`) }
+              : typeof Number(item.url[31]) === "number" &&
+                typeof Number(item.url[32]) === "number" &&
+                name === "vehicles"
+              ? { ...item, id: Number(item.url[31] + item.url[32]) }
+              : typeof Number(item.url[30]) === "number" &&
+                Number.isNaN(Number(item.url[31])) &&
+                name === "species"
+              ? { ...item, id: Number(`${item.url[30]}`) }
+              : typeof Number(item.url[30]) === "number" &&
+                typeof Number(item.url[31]) === "number" &&
+                name === "species"
+              ? { ...item, id: Number(item.url[30] + item.url[31]) }
+              : typeof Number(item.url[32]) === "number" &&
+                Number.isNaN(Number(item.url[33])) &&
+                name === "starships"
+              ? { ...item, id: Number(`${item.url[32]}`) }
+              : { ...item, id: Number(item.url[32] + item.url[33]) }
           )
       );
-  }, [data?.data.results]);
+  }, [data?.data.results, name]);
 
   // function for incrementing to the next page ,it
   // also increments the page indicator .It also sets
@@ -121,13 +166,15 @@ function FilmsPage() {
   return (
     <div className="page">
       <div className="page__1">
-        <h1 className="page__1__text">Films</h1>
+        <h1 className="page__1__text">{name}</h1>
         <div>
           <Filter query={query} sortDate={sortDate} />
         </div>
         <div className="page__container">
           {Datar &&
-            Datar.map((result) => <Card result={result} names={names} />)}
+            Datar.map((result) => (
+              <Card result={result} names={name} key={result.id} />
+            ))}
         </div>
         <div className="page__clicks">
           <Prevbutton prevPage={prevPage} page={page} />
@@ -141,4 +188,4 @@ function FilmsPage() {
   );
 }
 
-export default FilmsPage;
+export default ResourcesPage;
