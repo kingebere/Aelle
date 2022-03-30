@@ -10,7 +10,7 @@ import "../page.css";
 function Vehicles() {
   const [Data, setData] = useState<number[]>([]);
   const { id } = useParams();
-  const { isLoading, data } = useQuery(`${id}`, () =>
+  const { isLoading, data } = useQuery("vehicless", () =>
     axios.get(`https://swapi.dev/api/vehicles/${id}`)
   );
   /** Extract the numbers from the url and attaching to the Data state */

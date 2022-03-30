@@ -10,7 +10,7 @@ import "../page.css";
 function Starships() {
   const [Data, setData] = useState<number[]>([]);
   const { id } = useParams();
-  const { isLoading, data } = useQuery(`${id}`, () =>
+  const { isLoading, data } = useQuery("starshipss", () =>
     axios.get(`https://swapi.dev/api/starships/${id}`)
   );
   /** Extract the numbers from the url and attaching to the Data state */

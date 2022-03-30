@@ -10,7 +10,7 @@ import "../page.css";
 function Planets() {
   const [Data, setData] = useState<number[]>([]);
   const { id } = useParams();
-  const { isLoading, data } = useQuery(`${id}`, () =>
+  const { isLoading, data } = useQuery("planetss", () =>
     axios.get(`https://swapi.dev/api/planets/${id}`)
   );
   /** Extract the numbers from the url and attaching to the Data state */

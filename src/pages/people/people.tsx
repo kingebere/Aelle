@@ -11,7 +11,7 @@ function People() {
   const [Data, setData] = useState<number[]>([]);
 
   const { id } = useParams();
-  const { isLoading, data } = useQuery(`${id}`, () =>
+  const { isLoading, data } = useQuery("peoples", () =>
     axios.get(`https://swapi.dev/api/people/${id}`)
   );
   /** Extract the numbers from the url and attaching to the Data state */

@@ -10,7 +10,7 @@ import "../page.css";
 function Species() {
   const [Data, setData] = useState<number[]>([]);
   const { id } = useParams();
-  const { isLoading, data } = useQuery(`${id}`, () =>
+  const { isLoading, data } = useQuery("speciess", () =>
     axios.get(`https://swapi.dev/api/species/${id}`)
   );
   /** Extract the numbers from the url and attaching to the Data state */

@@ -11,7 +11,7 @@ import "../page.css";
 function Films() {
   const [Data, setData] = useState<number[]>([]);
   const { id } = useParams();
-  const { isLoading, data } = useQuery(`${id}`, () =>
+  const { isLoading, data } = useQuery("filmss", () =>
     axios.get(`https://swapi.dev/api/films/${id}`)
   );
   /** Extract the numbers from the url and attaching to the Data state */
