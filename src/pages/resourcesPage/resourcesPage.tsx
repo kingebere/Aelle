@@ -57,9 +57,9 @@ function ResourcesPage() {
   // a suitable option to use as id
   // This algorithm identifies the number and
   // attaches it into a newly created id .Thus making routing easy:)
-  // since urls have different lengths , I decided to create a spaghetti of
-  // ternary operators that targets the positions of the numbers in them
-  // Ternary operator spaghetti coming up. Heads up ;)
+  // since urls have different lengths , I decided to create a
+  // ternary operator that targets the positions of the numbers in them
+  // Ternary operator coming up. Heads up ;)
   useEffect(() => {
     setDatar(data?.data.results);
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -68,51 +68,16 @@ function ResourcesPage() {
         (prev) =>
           prev &&
           Object.values(prev).map((item) =>
-            typeof Number(item.url[29]) === "number" &&
-            Number.isNaN(Number(item.url[30])) &&
-            name === "people"
-              ? { ...item, id: Number(`${item.url[29]}`) }
-              : typeof Number(item.url[29]) === "number" &&
-                typeof Number(item.url[30]) === "number" &&
-                name === "people"
-              ? { ...item, id: Number(item.url[29] + item.url[30]) }
-              : typeof Number(item.url[30]) === "number" &&
-                Number.isNaN(Number(item.url[31])) &&
-                name === "planets"
-              ? { ...item, id: Number(`${item.url[30]}`) }
-              : typeof Number(item.url[30]) === "number" &&
-                typeof Number(item.url[31]) === "number" &&
-                name === "planets"
-              ? { ...item, id: Number(item.url[30] + item.url[31]) }
-              : typeof Number(item.url[28]) === "number" &&
-                Number.isNaN(Number(item.url[29])) &&
-                name === "films"
-              ? { ...item, id: Number(`${item.url[28]}`) }
-              : typeof Number(item.url[28]) === "number" &&
-                typeof Number(item.url[29]) === "number" &&
-                name === "films"
-              ? { ...item, id: Number(item.url[28] + item.url[29]) }
-              : typeof Number(item.url[31]) === "number" &&
-                Number.isNaN(Number(item.url[32])) &&
-                name === "vehicles"
-              ? { ...item, id: Number(`${item.url[31]}`) }
-              : typeof Number(item.url[31]) === "number" &&
-                typeof Number(item.url[32]) === "number" &&
-                name === "vehicles"
-              ? { ...item, id: Number(item.url[31] + item.url[32]) }
-              : typeof Number(item.url[30]) === "number" &&
-                Number.isNaN(Number(item.url[31])) &&
-                name === "species"
-              ? { ...item, id: Number(`${item.url[30]}`) }
-              : typeof Number(item.url[30]) === "number" &&
-                typeof Number(item.url[31]) === "number" &&
-                name === "species"
-              ? { ...item, id: Number(item.url[30] + item.url[31]) }
-              : typeof Number(item.url[32]) === "number" &&
-                Number.isNaN(Number(item.url[33])) &&
-                name === "starships"
-              ? { ...item, id: Number(`${item.url[32]}`) }
-              : { ...item, id: Number(item.url[32] + item.url[33]) }
+            typeof Number(item.url.charAt(item.url.length - 2)) === "number" &&
+            Number.isNaN(Number(item.url.charAt(item.url.length - 3)))
+              ? { ...item, id: Number(item.url.charAt(item.url.length - 2)) }
+              : {
+                  ...item,
+                  id: Number(
+                    item.url.charAt(item.url.length - 3) +
+                      item.url.charAt(item.url.length - 2)
+                  ),
+                }
           )
       );
   }, [data?.data.results, name]);
@@ -122,9 +87,9 @@ function ResourcesPage() {
   // the state of the filter
   const nextPage = () => {
     setPage((oldPage) => {
-      const nextPages = oldPage + 1;
+      let nextPages = oldPage + 1;
       if (nextPages > count || nextPages === count) {
-        return count;
+        nextPages = count;
       }
       return nextPages;
     });
@@ -137,9 +102,9 @@ function ResourcesPage() {
 
   const prevPage = () => {
     setPage((oldPage) => {
-      const prevPages = oldPage - 1;
+      let prevPages = oldPage - 1;
       if (prevPages < 1 || prevPages === 1) {
-        return 1;
+        prevPages = 1;
       }
       return prevPages;
     });

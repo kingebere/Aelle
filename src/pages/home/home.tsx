@@ -39,15 +39,16 @@ function Home() {
   return (
     <div className="home">
       <h1 className="home__text">Star Wars</h1>
-      {Object.keys(data?.data).map((name: string) => (
-        <Resource
-          name={name}
-          click={click}
-          remove={remove}
-          tagged={tagged}
-          key={name}
-        />
-      ))}
+      {data?.data &&
+        Object.keys(data?.data).map((name: string) => (
+          <Resource
+            name={name}
+            click={click}
+            remove={remove}
+            tagged={tagged}
+            key={name}
+          />
+        ))}
     </div>
   );
 }
