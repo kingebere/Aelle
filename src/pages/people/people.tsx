@@ -16,6 +16,7 @@ function People() {
   );
   /** Extract the numbers from the url and attaching to the Data state */
   useEffect(() => {
+    // eslint-disable-next-line consistent-return
     data?.data.films.forEach((cde: string) => {
       if (
         typeof Number(cde.charAt(28)) === "number" &&
