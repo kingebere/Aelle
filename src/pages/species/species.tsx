@@ -10,10 +10,10 @@ import "../page.css";
 function Species() {
   const [Data, setData] = useState<number[]>([]);
   const { id } = useParams();
-  const { isLoading, data } = useQuery("species", () =>
+  const { isLoading, data } = useQuery(`${id}`, () =>
     axios.get(`https://swapi.dev/api/species/${id}`)
   );
-
+  /** Extract the numbers from the url and attaching to the Data state */
   useEffect(() => {
     data?.data.films.forEach((cde: string) => {
       if (

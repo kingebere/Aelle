@@ -11,10 +11,10 @@ function People() {
   const [Data, setData] = useState<number[]>([]);
 
   const { id } = useParams();
-  const { isLoading, data } = useQuery("people", () =>
+  const { isLoading, data } = useQuery(`${id}`, () =>
     axios.get(`https://swapi.dev/api/people/${id}`)
   );
-
+  /** Extract the numbers from the url and attaching to the Data state */
   useEffect(() => {
     data?.data.films.forEach((cde: string) => {
       if (

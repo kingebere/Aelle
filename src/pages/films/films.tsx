@@ -14,6 +14,7 @@ function Films() {
   const { isLoading, data } = useQuery(`${id}`, () =>
     axios.get(`https://swapi.dev/api/films/${id}`)
   );
+  /** Extract the numbers from the url and attaching to the Data state */
   useEffect(() => {
     // eslint-disable-next-line consistent-return
     data?.data.characters.forEach((cde: string) => {

@@ -10,10 +10,10 @@ import "../page.css";
 function Starships() {
   const [Data, setData] = useState<number[]>([]);
   const { id } = useParams();
-  const { isLoading, data } = useQuery("starships", () =>
+  const { isLoading, data } = useQuery(`${id}`, () =>
     axios.get(`https://swapi.dev/api/starships/${id}`)
   );
-
+  /** Extract the numbers from the url and attaching to the Data state */
   useEffect(() => {
     data?.data.films.forEach((cde: string) => {
       if (
